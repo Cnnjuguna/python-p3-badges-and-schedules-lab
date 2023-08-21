@@ -37,11 +37,28 @@ def batch_badge_creator(names):
 
 def assign_rooms(names):
     MESSAGES = []  # an empty list to store the messages
-    rooms = 7
-    while rooms < len(names):
-        MESSAGES.append(f"Hello, {names[rooms]}! You'll be assigned to room {index}!")
+    for index, name in enumerate(names, start=1):
+        room_message = f"Hello, {name}! You'll be assigned to room {index}!"
+        MESSAGES.append(room_message)  # Add the message to the list
     return MESSAGES
 
 
+assigned_messages = assign_rooms(["Collin, Pharell", "Jerry", "Brenda"])
+for message in assigned_messages:
+    print(message)
+
+
 def printer(names):
-    return None
+    # Generating the messages using the batch_badge_creator() first
+    badge_messages = batch_badge_creator(names)
+
+    room_assign_messages = assign_rooms(names)
+
+    for a_badge_message in badge_messages:
+        print(a_badge_message)
+
+    for a_room_message in room_assign_messages:
+        print(a_room_message)
+
+
+print(printer(["Collin, Pharell", "Jerry", "Brenda"]))
